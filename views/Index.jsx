@@ -19,7 +19,7 @@ function Index({ pokemon }) {
                         <a href={`/pokemon/${i}`}>
                             Go to pokemon's page &#9658;
                         </a><br />
-                        <img src={p.img} alt={`Picture of ${p.name}`} />
+                        <img src={p.img+".jpg"} alt={`Picture of ${p.name}`} />
                     </li>
                 ))}
             </ul>

@@ -7,9 +7,12 @@ function capitalize(str) {
 function Show({ pokemon }) {
     return (
         <>
+            <h1>Gotta Catch 'Em All</h1>
             <div className="shown-pokemon">
-                <h3>{capitalize(pokemon.name)}</h3>
-                <img src={pokemon.img} alt={`Picture of ${pokemon.name}`} />
+                <h2>{capitalize(pokemon.name)}</h2>
+                <img src={pokemon.img+'.jpg'} alt={`Picture of ${pokemon.name}`} />
+                <br />
+                <a href="/pokemon">back</a>
             </div>
         </>
     )
