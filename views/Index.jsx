@@ -10,9 +10,9 @@ function Index({ pokemon }) {
             <h1 style={h1Style}>See All The Pokemon!</h1>
             <ul id="pokemon-list">
                 {pokemon.map(p => (
-                    <li>
+                    <li key={p.name}>
                         <h3>{p.name}</h3>
-                        <img src={p.img} alt="" />
+                        <img src={p.img} alt={`Picture of ${p.name}`} />
                     </li>
                 ))}
             </ul>
