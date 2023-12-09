@@ -26,6 +26,12 @@ app.get('/pokemon', (req,res)=>{
     res.render('Index.jsx', {pokemon})
 }) 
 
+app.get('/pokemon/:id', (req, res) => {
+    res.render('Show.jsx', {
+        pokemon: pokemon[req.params.id]
+    })
+})
+
 
 
 app.listen(PORT, () => {
