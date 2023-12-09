@@ -4,6 +4,10 @@ const h1Style = {
     color: 'green'
 }
 
+function capitalize(str) {
+    return str[0].toUpperCase()+str.slice(1)
+}
+
 function Index({ pokemon }) {
     return (
         <>
@@ -11,7 +15,7 @@ function Index({ pokemon }) {
             <ul id="pokemon-list">
                 {pokemon.map(p => (
                     <li key={p.name}>
-                        <h3>{p.name}</h3>
+                        <h3>{capitalize(p.name)}</h3>
                         <img src={p.img} alt={`Picture of ${p.name}`} />
                     </li>
                 ))}
