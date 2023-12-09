@@ -1,4 +1,5 @@
 const express = require('express')
+const jsx = require('jsx-view-engine')
 const app = express()
 const PORT = 3000
 /*
@@ -7,6 +8,10 @@ const PORT = 3000
     ../ = back a folder
 */
 const pokemon = require("./models/pokemon.js")
+
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jsx')
+app.engine('jsx', jsx())
 
 app.get('/', (req,res)=>{
     res.send("Welcome to Pokemon App!")
@@ -18,7 +23,7 @@ app.get('/', (req,res)=>{
     ()=>{}
 */
 app.get('/pokemon', (req,res)=>{
-    res.send(pokemon)
+    res.render('Index.jsx', {pokemon})
 })
 
 
