@@ -12,6 +12,7 @@ function Index({ pokemon }) {
     return (
         <>
             <h1 style={h1Style}>See All The Pokemon!</h1>
+            <a href="/pokemon/new">Add new pokemon</a>
             <ul id="pokemon-list">
                 {pokemon.map((p, i) => (
                     <li key={p.name}>
