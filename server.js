@@ -1,3 +1,8 @@
+require('dotenv').config()
+const {MONGO_URI} = process.env
+const mongoose = require('mongoose')
+const Pokemon = require('./models/PokemonModel.js')
+
 const express = require('express')
 const jsx = require('jsx-view-engine')
 const app = express()
@@ -7,7 +12,8 @@ const PORT = 3000
     ./ = current folder
     ../ = back a folder
 */
-const pokemon = require("./models/pokemon.js")
+// const pokemon = require("./models/pokemon.js")
+let pokemon
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
@@ -41,13 +47,28 @@ app.get('/pokemon/:id', (req, res) => {
     })
 })
 
-app.post('/pokemon/new', (req, res) =>{
-    pokemon.push(req.body)
-    res.redirect('/pokemon')
+app.post('/pokemon/new', async (req, res) =>{
+    // pokemon.push(req.body)
+    // res.redirect('/pokemon')
+
+    const newPokemon = new Pokemon(req.body)
+    newPokemon.save()
+        .then(async ()=>{
+            pokemon = await Pokemon.find({})
+            res.redirect('/pokemon')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
 })
 
 
-
-app.listen(PORT, () => {
-    console.log(`Now listening on port ${PORT}. http://localhost:${PORT}/`);
-});
+mongoose.connect(MONGO_URI).then(async ()=>{
+    pokemon = await Pokemon.find({})
+    app.listen(PORT, () => {
+        console.log(`Now listening on port ${PORT}. http://localhost:${PORT}/`);
+    });
+}).catch(err => {
+    console.log(err)
+})
